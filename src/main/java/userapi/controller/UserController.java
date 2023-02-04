@@ -36,10 +36,25 @@ public class UserController {
     @RequestMapping(value = "/create", produces = "application/json", method=RequestMethod.POST)
     public ResponseEntity<User> createUser(@RequestBody User user) {
         try {
-            User newUser = new User(user.getUserId(), user.getUserName(), user.getEmail(), user.getCreatedAt());
+            User newUser = new User(
+                    user.getUserId(),
+                    user.getUserName(),
+                    user.getEmail(),
+                    user.getCreatedAt(),
+                    user.getUserToken());
             return new ResponseEntity<>(userRepository.save(newUser), HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @RequestMapping(value="/delete/{userName}", produces = "application/json", method=RequestMethod.DELETE)
+    public ResponseEntity<HttpStatus> deleteUserByUserName(@PathVariable(value="userName") String userName) {
+        try {
+            userRepository.deleteUserByUserName(userName);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

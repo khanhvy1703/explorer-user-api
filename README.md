@@ -5,6 +5,7 @@ in the folder `src/main/resource/` create a file `application.properties`. In th
 ```
 spring.data.mongodb.database=explorer
 spring.data.mongodb.uri=<get it from mongodb connect in the cluster>
+spring.data.mongodb.auto-index-creation=true
 
 server.port=8080
 ```

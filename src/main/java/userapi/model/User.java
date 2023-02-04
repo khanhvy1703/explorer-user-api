@@ -15,35 +15,35 @@ import java.util.List;
 @AllArgsConstructor
 public class User {
     @Id
-    @NonNull
-    @Indexed(unique = true)
-    String userId;
+    private String userId;
 
-    @NonNull
     @Indexed(unique = true)
-    String userName;
+    private String userName;
 
-    @NonNull
     @Indexed(unique = true)
-    String email;
+    private String email;
 
-    String displayName;
-    String avatar;
-    String createdAt;
-    boolean gender;
-    List<String> savedRestaurants;
-    List<String> reviews;
-    List<String> collections;
-    List<String> following;
-    List<String> followers;
+    @Indexed(unique = true)
+    private String userToken;
+
+    private String displayName;
+    private String avatar;
+    private String createdAt;
+    private boolean gender;
+    private List<String> savedRestaurants;
+    private List<String> reviews;
+    private List<String> collections;
+    private List<String> following;
+    private List<String> followers;
 
     public User() {};
 
-    public User(String userId, String userName, String email, String createdAt) {
+    public User(String userId, String userName, String email, String createdAt, String userToken) {
         this.userId = userId;
         this.userName = userName;
         this.email = email;
         this.createdAt = createdAt;
+        this.userToken = userToken;
     }
 
     public User(String userName, String displayName, String email, String avatar, String createdAt, boolean gender,
